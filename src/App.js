@@ -39,18 +39,22 @@ export default class App extends Component {
 
     componentDidMount() {
         for (let i = 1; i <= this.state.months; i++) {
-            this.refs[i].style.backgroundColor = "yellow"
+            this.refs[i].style.backgroundColor = "yellow";
         }
     }
 
     onChange(date, dateString) {
+        for (let i = 1; i <= 900; i++) {
+            this.refs[i].style.backgroundColor = "transparent";
+        }
         dateString += '-1';
+        dateString = dateString.replace(/-/g, "/");
         let d1 = new Date(dateString);
         let d2 = new Date();
         let abs = Math.abs((d2.getFullYear() - d1.getFullYear()) * 12 + d2.getMonth() - d1.getMonth());
         this.setState({months: abs});
         for (let i = 1; i <= abs; i++) {
-            this.refs[i].style.backgroundColor = "yellow"
+            this.refs[i].style.backgroundColor = "yellow";
         }
     }
 }
